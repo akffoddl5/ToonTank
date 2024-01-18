@@ -18,12 +18,16 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	class ATank* Tank;
+	FTimerHandle TimerHandle;
+	void CheckFireCondition();
+	int32 FireRate = 2;
+	void Fire();
 
 protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"), Category=" AA range ")
 	float Range;
-
+	
 	
 };

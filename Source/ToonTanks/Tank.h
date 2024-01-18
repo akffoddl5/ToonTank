@@ -23,7 +23,7 @@ public:
 
 	void Move(float a);
 	void Turn(float a);
-
+	void Fire();
 	
 	
 	virtual void Tick(float DeltaTime) override;

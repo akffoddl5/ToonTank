@@ -4,13 +4,15 @@
 #include "Tower.h"
 #include "Tank.h"
 #include "Kismet/GameplayStatics.h"
+#include "TimerManager.h"
 
 
 void ATower::Tick(float DeltaTime){
     Super::Tick(DeltaTime);
-    UE_LOG(LogTemp, Log, TEXT("Tower tick777"));
+    
+    //UE_LOG(LogTemp, Log, TEXT("Tower tick777"));
     if(Tank){
-        UE_LOG(LogTemp, Log, TEXT("Tower tick77"));
+        //UE_LOG(LogTemp, Log, TEXT("Tower tick77"));
         float Distance = FVector::Dist(GetActorLocation(), Tank->GetActorLocation());
         if(Distance < Range){
             //get rotation
@@ -20,7 +22,6 @@ void ATower::Tick(float DeltaTime){
             TurretRotate(Tank->GetActorLocation());
         }
     }
-    
 }
 
 void ATower::BeginPlay(){
@@ -29,4 +30,29 @@ void ATower::BeginPlay(){
     //UGamePlayStatics::GetPlayerPawn();
     Tank = Cast<ATank>(UGameplayStatics::GetPlayerPawn(this, 0));
 
+    GetWorldTimerManager().SetTimer(TimerHandle, this, &ATower::CheckFireCondition, FireRate, true);
+    
+}
+
+void ATower::CheckFireCondition()
+{
+    if(Tank){
+        //UE_LOG(LogTemp, Log, TEXT("Tower tick77"));
+        float Distance = FVector::Dist(GetActorLocation(), Tank->GetActorLocation());
+        if(Distance < Range){
+            //get rotation
+            //FRotator Dir = (Tank->GetActorLocation() - GetActorLocation()).Rotation();
+            
+            //init rotation
+            Fire();
+        }
+    }
+}
+
+void ATower::Fire()
+{
+    UE_LOG(LogTemp, Log, TEXT("Tower Fire"));
+    DrawDebugSphere(GetWorld(), ProjectileSpawnPoint->GetComponentLocation(), 30, 20, FColor::Red, false, 0.5f);
+    
+    
 }

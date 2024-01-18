@@ -25,9 +25,11 @@ public:
 	UPROPERTY(VisibleDefaultsOnly)
 	int32 red2;
 
-	
 
-private:
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 
 	UPROPERTY(meta=(AllowPrivateAccess = "true"), BlueprintReadWrite, Category= " _component_ ", EditDefaultsOnly)
 	class UCapsuleComponent* CapsuleCompo;
@@ -37,15 +39,6 @@ private:
 	UStaticMeshComponent* Turret_Mesh;
 	UPROPERTY(meta=(AllowPrivateAccess = "true"), BlueprintReadWrite, Category= " _component_ ", EditDefaultsOnly)
 	USceneComponent* ProjectileSpawnPoint;
-
-
-	
-	
-
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 
 	void TurretRotate(FVector Target){
 		FVector MyLocation = Turret_Mesh->GetComponentLocation();
@@ -63,5 +56,5 @@ public:
 
 
 	// Called to bind functionality to input
-	//virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 };

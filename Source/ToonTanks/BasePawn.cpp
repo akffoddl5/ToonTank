@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "BasePawn.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values
@@ -23,10 +23,6 @@ ABasePawn::ABasePawn()
 	ProjectileSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Spawn Point"));
 	ProjectileSpawnPoint->SetupAttachment(Turret_Mesh);
 	
-
-	
-
-
 }
 
 // Called when the game starts or when spawned
@@ -43,9 +39,15 @@ void ABasePawn::Tick(float DeltaTime)
 	
 }
 
+
+
 // Called to bind functionality to input
-// void ABasePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-// {
-// 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-// }
+void ABasePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+	//UE_LOG(LogTemp, Log, TEXT("compo"));
+	
+	
+}
 
