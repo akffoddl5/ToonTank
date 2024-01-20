@@ -29,6 +29,7 @@ ABasePawn::ABasePawn()
 void ABasePawn::BeginPlay()
 {
 	Super::BeginPlay();
+	
 }
 
 // Called every frame

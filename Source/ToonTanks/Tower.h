@@ -28,6 +28,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"), Category=" AA range ")
 	float Range;
+
 	
 	
 };

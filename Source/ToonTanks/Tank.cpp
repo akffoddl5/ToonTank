@@ -7,6 +7,7 @@
 #include "Components/InputComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"
+#include "Projectile.h"
 #include "Engine/EngineTypes.h"
 
 ATank::ATank(){
@@ -34,6 +35,11 @@ void ATank::Fire()
     bool Is_Hit = PlayerController->GetHitResultUnderCursor(ECC_Visibility, false, Hit);
     if(Is_Hit)
     {
+        AProjectile* SpawnProjectile = GetWorld()->SpawnActor<AProjectile>(Projectile_BP,
+            ProjectileSpawnPoint->GetComponentLocation(),
+            ProjectileSpawnPoint->GetComponentRotation());
+        
+        
         UE_LOG(LogTemp, Log, TEXT(" Fire hit !!"));
         DrawDebugSphere(GetWorld(), ProjectileSpawnPoint->GetComponentLocation(), 30, 10, FColor::Red , false, 0.5f);
     }else

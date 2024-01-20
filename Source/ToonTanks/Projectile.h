@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/StaticMeshComponent.h"
+#include "GameFramework/ProjectileMovementComponent.h"
 #include "Projectile.generated.h"
 
 UCLASS()
@@ -18,6 +19,13 @@ public:
 	UPROPERTY(EditAnywhere, meta= (AllowPrivateAccess = "true"), BlueprintReadWrite, Category= "AA_ MY PROPERTY")
 	UStaticMeshComponent* StaticMeshComponent;
 
+	UPROPERTY(VisibleAnywhere)
+	UProjectileMovementComponent* ProjectileMovementComponent;
+
+	UFUNCTION()
+	void OnHit_Red(UPrimitiveComponent* MyPrimitive, AActor* OtherActor, UPrimitiveComponent* OtherPrimitive, FVector NormalImpulse,const FHitResult& HitResult);
+	
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -25,5 +33,5 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
+	
 };
