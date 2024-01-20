@@ -24,7 +24,8 @@ public:
 
 	UFUNCTION()
 	void OnHit_Red(UPrimitiveComponent* MyPrimitive, AActor* OtherActor, UPrimitiveComponent* OtherPrimitive, FVector NormalImpulse,const FHitResult& HitResult);
-	
+
+	float Damage = 50.f;
 
 protected:
 	// Called when the game starts or when spawned

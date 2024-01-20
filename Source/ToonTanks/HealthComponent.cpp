@@ -27,7 +27,9 @@ void UHealthComponent::BeginPlay()
 
 void UHealthComponent::DamageTaken(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* Instigator, AActor* DamageCauser)
 {
+	Health -= Damage;
 	UE_LOG(LogTemp, Log, TEXT(" damage taken  %s  , %s , %s "), *DamagedActor->GetName(), *DamageCauser->GetName(), *Instigator->GetName());
+	UE_LOG(LogTemp, Log, TEXT(" my Health : %f"), Health);
 }
 
 

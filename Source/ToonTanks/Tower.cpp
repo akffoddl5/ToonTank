@@ -56,8 +56,9 @@ void ATower::Fire()
     UE_LOG(LogTemp, Log, TEXT("Tower Fire"));
     DrawDebugSphere(GetWorld(), ProjectileSpawnPoint->GetComponentLocation(), 30, 20, FColor::Red, false, 0.5f);
 
-    GetWorld()->SpawnActor<AProjectile>(Projectile_BP,
+    auto SpawnProjectile = GetWorld()->SpawnActor<AProjectile>(Projectile_BP,
         ProjectileSpawnPoint->GetComponentLocation(),
         ProjectileSpawnPoint->GetComponentRotation());
-    
+
+    SpawnProjectile->SetOwner(this);
 }

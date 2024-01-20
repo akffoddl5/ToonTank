@@ -38,6 +38,8 @@ void ATank::Fire()
         AProjectile* SpawnProjectile = GetWorld()->SpawnActor<AProjectile>(Projectile_BP,
             ProjectileSpawnPoint->GetComponentLocation(),
             ProjectileSpawnPoint->GetComponentRotation());
+
+        SpawnProjectile->SetOwner(this);
         
         
         UE_LOG(LogTemp, Log, TEXT(" Fire hit !!"));

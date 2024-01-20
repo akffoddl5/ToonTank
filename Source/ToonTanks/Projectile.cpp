@@ -3,6 +3,8 @@
 
 #include "Projectile.h"
 
+#include "Kismet/GameplayStatics.h"
+
 // Sets default values
 AProjectile::AProjectile()
 {
@@ -34,5 +36,26 @@ void AProjectile:: OnHit_Red(UPrimitiveComponent* MyPrimitive, AActor* OtherActo
 {
 	UE_LOG(LogTemp, Log, TEXT("Hit RED %s , %s , %s, %s"), *MyPrimitive->GetName(), *OtherActor->GetName() , *OtherPrimitive->GetName());
 	UE_LOG(LogTemp, Log, TEXT("%s %s"),*NormalImpulse.ToCompactString(), *HitResult.ImpactPoint.ToCompactString());
+
+	if(GetOwner() && GetOwner()->GetInstigatorController() && OtherActor != this && OtherActor != GetOwner())
+	{
+		UGameplayStatics::ApplyDamage(OtherActor, Damage, GetOwner()->GetInstigatorController(), this, UDamageType::StaticClass());
+		UE_LOG(LogTemp, Log, TEXT("flag4"));
+		
+	}
+	else
+	{
+		if(!GetOwner())
+		{
+			UE_LOG(LogTemp, Log, TEXT("flag1"));
+		}else if(!GetOwner()->GetInstigatorController())
+		{
+			UE_LOG(LogTemp, Log, TEXT("flag2"));
+		}else
+		{
+			UE_LOG(LogTemp, Log, TEXT("flag3"));
+		}
+	}
+	Destroy();
 }
 
