@@ -28,5 +28,5 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	UFUNCTION()
 	void DamageTaken(AActor* a, float b, const UDamageType* c, AController* d , AActor* e);
-		
+	class ATankGameModeBase* TankGameModeBase; 
 };

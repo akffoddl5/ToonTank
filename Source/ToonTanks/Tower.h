@@ -23,6 +23,8 @@ public:
 	int32 FireRate = 2;
 	void Fire();
 
+	void PawnDie();
+
 protected:
 	virtual void BeginPlay() override;
 

@@ -25,6 +25,8 @@ public:
 	UPROPERTY(VisibleDefaultsOnly)
 	int32 red2;
 
+	virtual void PawnDie();
+
 
 
 protected:

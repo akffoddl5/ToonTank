@@ -18,6 +18,23 @@ ATank::ATank(){
     Camera_component->SetupAttachment(Spring_Arm);
 }
 
+void ATank::PawnDie()
+{
+    Super::PawnDie();
+    GetOwner()->SetActorHiddenInGame(true);
+    GetOwner()->SetActorTickEnabled(false);
+    
+    
+    UE_LOG(LogTemp, Log, TEXT("죽었어"));
+}
+
+APlayerController* ATank::GetController()
+{
+    return PlayerController;
+    
+}
+
+
 // Called to bind functionality to input
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
@@ -32,6 +49,7 @@ void ATank::Fire()
 {
     UE_LOG(LogTemp, Log, TEXT("Fire .."));
     FHitResult Hit;
+    if(!PlayerController) return;
     bool Is_Hit = PlayerController->GetHitResultUnderCursor(ECC_Visibility, false, Hit);
     if(Is_Hit)
     {
@@ -55,7 +73,7 @@ void ATank::BeginPlay()
 {
 	Super::BeginPlay();
 
-    PlayerController = Cast<APlayerController>(GetController());
+    PlayerController = Cast<APlayerController>(UGameplayStatics::GetPlayerController(this,0));
 }
 
 
@@ -79,9 +97,10 @@ void ATank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
     FHitResult FHit;
+    if(!PlayerController) return;
     bool Hit = PlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, FHit);
     if(Hit){
-        DrawDebugSphere(GetWorld(), FHit.ImpactPoint, 5, 8, FColor::Red, false, -1);
+        //DrawDebugSphere(GetWorld(), FHit.ImpactPoint, 5, 8, FColor::Red, false, -1);
         TurretRotate(FHit.ImpactPoint);
     }
 }

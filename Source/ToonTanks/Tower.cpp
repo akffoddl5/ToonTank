@@ -62,3 +62,9 @@ void ATower::Fire()
 
     SpawnProjectile->SetOwner(this);
 }
+
+void ATower::PawnDie()
+{
+    Super::PawnDie();
+    Destroy();
+}

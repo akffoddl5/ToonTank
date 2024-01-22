@@ -32,13 +32,18 @@ void ABasePawn::BeginPlay()
 	
 }
 
+void ABasePawn::PawnDie()
+{
+	
+}
+
 // Called every frame
 void ABasePawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	
 }
+
+
 
 
 

@@ -17,7 +17,7 @@ class TOONTANKS_API ATank : public ABasePawn
 public:
 
 	ATank();
-
+	virtual void PawnDie() override;
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
@@ -27,6 +27,8 @@ public:
 	
 	
 	virtual void Tick(float DeltaTime) override;
+
+	APlayerController* GetController();
 
 private:
 
@@ -38,7 +40,7 @@ private:
 	UPROPERTY(EditAnywhere, Category=" move ", BlueprintReadWrite, meta=(AllowPrivateAccess= "true"))
 	float Speed;
 
-	UPROPERTY(EditInstanceOnly, Category = "_move_", BlueprintReadOnly, meta=(AllowPrivateAccess = "true"))
+	UPROPERTY(EditDefaultsOnly, Category = "_move_", BlueprintReadOnly, meta=(AllowPrivateAccess = "true"))
 	float TurnRate;
 	
 	

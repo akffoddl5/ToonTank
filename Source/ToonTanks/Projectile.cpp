@@ -34,14 +34,14 @@ void AProjectile::Tick(float DeltaTime)
 
 void AProjectile:: OnHit_Red(UPrimitiveComponent* MyPrimitive, AActor* OtherActor, UPrimitiveComponent* OtherPrimitive, FVector NormalImpulse,const FHitResult& HitResult)
 {
-	UE_LOG(LogTemp, Log, TEXT("Hit RED %s , %s , %s, %s"), *MyPrimitive->GetName(), *OtherActor->GetName() , *OtherPrimitive->GetName());
-	UE_LOG(LogTemp, Log, TEXT("%s %s"),*NormalImpulse.ToCompactString(), *HitResult.ImpactPoint.ToCompactString());
+	
 
 	if(GetOwner() && GetOwner()->GetInstigatorController() && OtherActor != this && OtherActor != GetOwner())
 	{
 		UGameplayStatics::ApplyDamage(OtherActor, Damage, GetOwner()->GetInstigatorController(), this, UDamageType::StaticClass());
 		UE_LOG(LogTemp, Log, TEXT("flag4"));
-		
+		UE_LOG(LogTemp, Log, TEXT("Hit RED %s "), *OtherActor->GetName() );
+		//UE_LOG(LogTemp, Log, TEXT("%s %s"),*NormalImpulse.ToCompactString(), *HitResult.ImpactPoint.ToCompactString());
 	}
 	else
 	{

@@ -3,6 +3,9 @@
 
 #include "HealthComponent.h"
 
+#include "TankGameModeBase.h"
+#include "Kismet/GameplayStatics.h"
+
 // Sets default values for this component's properties
 UHealthComponent::UHealthComponent()
 {
@@ -23,13 +26,18 @@ void UHealthComponent::BeginPlay()
 
 	GetOwner()->OnTakeAnyDamage.AddDynamic(this, &UHealthComponent::DamageTaken);
 	// ...
+	TankGameModeBase = Cast<ATankGameModeBase>(UGameplayStatics::GetGameMode(this));
 }
 
 void UHealthComponent::DamageTaken(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* Instigator, AActor* DamageCauser)
 {
-	Health -= Damage;
 	UE_LOG(LogTemp, Log, TEXT(" damage taken  %s  , %s , %s "), *DamagedActor->GetName(), *DamageCauser->GetName(), *Instigator->GetName());
 	UE_LOG(LogTemp, Log, TEXT(" my Health : %f"), Health);
+	Health -= Damage;
+	if(Health <=0 && TankGameModeBase)
+	{
+		TankGameModeBase->ActorDied(GetOwner());
+	}
 }
 
 

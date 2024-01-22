@@ -13,5 +13,12 @@ UCLASS()
 class TOONTANKS_API ATankGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+
+public:
+	void ActorDied(AActor* DieActor);
+	class ATank* MyTank;
+	class AMyPlayerController* MyPlayerController;
+
+protected:
+	void BeginPlay() override;
 };
