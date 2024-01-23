@@ -27,6 +27,21 @@ public:
 
 	float Damage = 50.f;
 
+	UPROPERTY(EditAnywhere, Category=" Particle_RED ")
+	UParticleSystem* ParticleSystem_Hit;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	class UParticleSystemComponent* ParticleSystemComponent;
+
+	UPROPERTY(EditDefaultsOnly)
+	class USoundBase* Launch_Sound;
+
+	UPROPERTY(EditDefaultsOnly)
+	class USoundBase* Boom_Sound;
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UCameraShakeBase> CameraShakeBase_Hit;
+	
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

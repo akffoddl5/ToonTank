@@ -27,7 +27,14 @@ public:
 
 	virtual void PawnDie();
 
+	UPROPERTY(EditDefaultsOnly)
+	UParticleSystem* DieEffect;
 
+	UPROPERTY(EditDefaultsOnly)
+	class USoundBase* DieSound;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UCameraShakeBase> CameraShake_Death; 
 
 protected:
 	// Called when the game starts or when spawned

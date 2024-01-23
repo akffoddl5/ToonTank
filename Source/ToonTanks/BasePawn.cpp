@@ -34,7 +34,9 @@ void ABasePawn::BeginPlay()
 
 void ABasePawn::PawnDie()
 {
-	
+	UGameplayStatics::SpawnEmitterAtLocation(this, DieEffect, GetActorLocation(), GetActorRotation());
+	UGameplayStatics::PlaySoundAtLocation(this, DieSound, GetActorLocation());
+	GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(CameraShake_Death);
 }
 
 // Called every frame

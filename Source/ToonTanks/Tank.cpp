@@ -21,8 +21,8 @@ ATank::ATank(){
 void ATank::PawnDie()
 {
     Super::PawnDie();
-    GetOwner()->SetActorHiddenInGame(true);
-    GetOwner()->SetActorTickEnabled(false);
+    SetActorHiddenInGame(true);
+    SetActorTickEnabled(false);
     
     
     UE_LOG(LogTemp, Log, TEXT("죽었어"));

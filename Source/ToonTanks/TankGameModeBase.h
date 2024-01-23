@@ -6,6 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "TankGameModeBase.generated.h"
 
+
 /**
  * 
  */
@@ -18,6 +19,17 @@ public:
 	void ActorDied(AActor* DieActor);
 	class ATank* MyTank;
 	class AMyPlayerController* MyPlayerController;
+	FTimerHandle TimerHandle;
+	void GameStartHandle();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void GameInit();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void GameOver(bool bVal);
+
+	int32 GetTargetNum();
+	int32 TargetNum;
 
 protected:
 	void BeginPlay() override;
