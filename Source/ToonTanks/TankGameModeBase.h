@@ -30,7 +30,17 @@ public:
 
 	int32 GetTargetNum();
 	int32 TargetNum;
+	int32 TargetNum_Init;
+
+	UFUNCTION()
+	void RestartLevel();
+	FTimerDelegate TimerDelegate;
+
+	static int32 Current_Stage;
+
+	bool vIsOver = false;
 
 protected:
 	void BeginPlay() override;
 };
+

@@ -61,7 +61,7 @@ void ATank::Fire()
         
         
         UE_LOG(LogTemp, Log, TEXT(" Fire hit !!"));
-        DrawDebugSphere(GetWorld(), ProjectileSpawnPoint->GetComponentLocation(), 30, 10, FColor::Red , false, 0.5f);
+        //DebugSphere(GetWorld(), ProjectileSpawnPoint->GetComponentLocation(), 30, 10, FColor::Red , false, 0.5f);
     }else
     {
         UE_LOG(LogTemp, Log, TEXT(" XXXXXXXXXXXXXX hit !!"));
